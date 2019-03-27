@@ -1,0 +1,54 @@
+$green: #1ff042;
+
+@keyframes cursor-blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.terminal{
+	position: relative;
+	min-height: 100vh;
+	padding: 4rem;
+	background-color: #001529;
+
+	.prompt{
+		color: $green;
+		display: block;
+		font-family: 'AndaleMono', monospace;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 0.9em;
+		letter-spacing: 0.15em;
+		white-space: pre-wrap;
+		text-shadow: 0 0 2px rgba($green,0.75);
+		line-height: 1;
+		margin-bottom: 0.75em;
+
+		&:before {
+			content: '> ';
+			display: inline-block;
+		}
+	}
+
+	.new-output{
+		display: inline-block;
+		&:after {
+			display: inline-block;
+			vertical-align: -0.15em;
+			width: 0.75em;
+			height: 1em;
+			margin-left: 5px;
+			background: $green;
+			box-shadow: 1px 1px 1px rgba($green,0.65), -1px -1px 1px rgba($green,0.65), 1px -1px 1px rgba($green,0.65), -1px 1px 1px rgba($green,0.65);
+            animation: cursor-blink 1.25s steps(1) infinite;
+			content: '';
+		}
+	}
+}
