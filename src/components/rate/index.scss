@@ -1,0 +1,10 @@
+.c-rate {
+  font-size: $font-size-lg;
+  line-height: 1;
+  color: #ffac2d;
+
+  &__num {
+    padding: 0 5px;
+    font-size: 24px;
+  }
+}

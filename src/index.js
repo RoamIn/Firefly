@@ -4,12 +4,20 @@ import { BrowserRouter } from 'react-router-dom'
 
 import './index.scss'
 import routes from '@/routes'
-import RouterView from '@/components/RouterView'
+import RouterView from '@/components/router-view'
+import Sidebar from '@/components/sidebar'
 
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(<BrowserRouter>
-    <RouterView routes={routes} />
+    <main className="layout">
+        <aside className="layout__aside">
+            <Sidebar />
+        </aside>
+        <div className="layout__content">
+            <RouterView routes={routes} />
+        </div>
+    </main>
 </BrowserRouter>, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change

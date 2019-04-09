@@ -1,0 +1,10 @@
+@mixin text-highlight($color: $primary, $blur: 2px) {
+  color: $color;
+  filter: drop-shadow(0 2px $blur rgba($color, 0.35));
+}
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

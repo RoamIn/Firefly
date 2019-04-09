@@ -1,0 +1,58 @@
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    $items: 6;
+
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    margin: 15px;
+    width: calc(100% / #{$items} - 30px);
+    border-radius: 2px;
+    background-color: $background-color-light;
+
+    &-poster {
+      padding-bottom: 140%;
+      background-size: cover;
+    }
+
+    &-content {
+      display: none;
+      padding: 8px;
+      color: $text-color-base;
+      filter: drop-shadow(0 0 6px $shadow-color);
+
+      // @include text-truncate;
+    }
+  }
+
+  &__icon-new {
+    margin-right: 5px;
+    vertical-align: -0.25em;
+  }
+
+  &__movie-title {
+  }
+
+  &__movie-genres {
+  }
+
+  &__movie-genre {
+    padding: 0 2px;
+    color: $text-color-base;
+    font-size: $font-size-sm;
+    border-radius: 4px;
+    border: 1px solid $border-color;
+    background-color: $background-color-light;
+
+    & + & {
+      margin-left: 5px;
+    }
+  }
+
+  &__movie-rate {
+    text-align: right;
+  }
+}

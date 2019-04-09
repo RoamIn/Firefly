@@ -1,19 +1,31 @@
-import Movies from '@/pages/Movies'
-import Movie from '@/pages/Movie'
-import NotFound from '@/pages/NotFound'
+import { lazy } from 'react'
 
 export default [
     {
-        path: '/',
-        component: Movies
+        path: '/movie',
+        name: 'Movie',
+        icon: 'movie',
+        exact: true,
+        component: lazy(() => import('@/pages/Movie'))
     },
     {
-        path: '/movie',
+        path: '/live',
+        name: 'Live',
+        icon: 'live',
         exact: true,
-        component: Movie
+        component: lazy(() => import('@/pages/Live'))
+    },
+    {
+        path: '/',
+        name: 'Home',
+        icon: 'movie1',
+        exact: true,
+        component: lazy(() => import('@/pages/Movies'))
     },
     {
         path: '/*',
-        component: NotFound
-    },
+        name: 'NotFound',
+        icon: '404',
+        component: lazy(() => import('@/pages/NotFound'))
+    }
 ]

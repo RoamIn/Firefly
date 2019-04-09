@@ -1,0 +1,31 @@
+.c-tabs {
+  &__header {
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    padding: 25px 0;
+    text-align: center;
+    color: $text-color-dark;
+    background-color: $background-color-base;
+  }
+
+  &__title {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 4px 0;
+    user-select: none;
+    cursor: pointer;
+    font-weight: 400;
+    border-bottom: 2px solid transparent;
+
+    &.is-active,
+    &:hover {
+      @include text-highlight($primary);
+    }
+
+    &.is-active {
+      position: relative;
+      border-bottom-color: #000;
+    }
+  }
+}
