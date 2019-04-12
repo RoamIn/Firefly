@@ -1,2 +1,18 @@
 .page-movies {
+  display: flex;
+  height: 100%;
+
+  &__body {
+    flex: auto;
+  }
+
+  &__drawer {
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    border-left: 1px solid #202020;
+    box-shadow: 0 0 30px #555;
+    transition: all 0.2s;
+  }
 }

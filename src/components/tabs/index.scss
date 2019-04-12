@@ -1,12 +1,13 @@
 .c-tabs {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
   &__header {
-    z-index: 1;
-    position: sticky;
-    top: 0;
+    flex-shrink: 0;
     padding: 25px 0;
     text-align: center;
     color: $text-color-dark;
-    background-color: $background-color-base;
   }
 
   &__title {
@@ -27,5 +28,11 @@
       position: relative;
       border-bottom-color: #000;
     }
+  }
+
+  &__body {
+    flex: auto;
+    overflow: auto;
+    @include hide-scrollbar;
   }
 }

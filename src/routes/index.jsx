@@ -2,7 +2,7 @@ import { lazy } from 'react'
 
 export default [
     {
-        path: '/movie',
+        path: '/movie/:id',
         name: 'Movie',
         icon: 'movie',
         exact: true,

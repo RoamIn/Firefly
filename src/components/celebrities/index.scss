@@ -1,0 +1,24 @@
+.c-celebrities {
+  display: flex;
+}
+
+.c-celebrity {
+  width: 100px;
+  cursor: pointer;
+
+  & + & {
+    margin-left: 10px;
+  }
+
+  &__avatar {
+    padding-bottom: 143%;
+    background-size: cover;
+    border-radius: 4px;
+  }
+
+  &__name {
+    padding: 5px 0;
+    text-align: center;
+    font-size: $font-size-sm;
+  }
+}

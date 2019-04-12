@@ -3,21 +3,22 @@ $background-color-base: #fafafa !default;
 $background-color-dark: #eaeaea !default;
 
 $body-background-color: $background-color-base !default;
+
+$sidebar-width: 210px;
 $sidebar-background-color: $background-color-base !default;
 
-$border-color: #f4f6f8 !default;
+$border-color: #d6d6d6 !default;
 
-$text-color-light: #bac3d0 !default;
-$text-color-base: #768191 !default;
-$text-color-dark: #1d2329 !default;
+$text-color-light: #555 !default;
+$text-color-base: #333 !default;
+$text-color-dark: #111 !default;
 
 $link-color: #7baaf7 !default;
 
 $icon-color: #919191 !default;
-// drop-shadow(0 0 6px rgba(0, 0, 0, 0.35))
 $shadow-color: #fafbfc !default;
 
-$primary: #000 !default;
+$primary: $text-color-dark !default;
 
 $font-size-base: 1rem !default;
 $font-size-lg: $font-size-base * 1.25 !default;

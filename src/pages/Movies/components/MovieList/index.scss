@@ -1,58 +1,60 @@
-.movie-list {
-  display: flex;
-  flex-wrap: wrap;
+.movies {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 
-  &__item {
-    $items: 6;
-
-    flex-shrink: 0;
-    overflow: hidden;
-    position: relative;
-    margin: 15px;
-    width: calc(100% / #{$items} - 30px);
-    border-radius: 2px;
-    background-color: $background-color-light;
-
-    &-poster {
-      padding-bottom: 140%;
-      background-size: cover;
-    }
-
-    &-content {
-      display: none;
-      padding: 8px;
-      color: $text-color-base;
-      filter: drop-shadow(0 0 6px $shadow-color);
-
-      // @include text-truncate;
-    }
+  @media screen and (min-width: 1601px) {
+    grid-template-columns: repeat(8, 1fr);
   }
 
-  &__icon-new {
-    margin-right: 5px;
-    vertical-align: -0.25em;
+  @media screen and (max-width: 1600px) {
+    grid-template-columns: repeat(6, 1fr);
   }
 
-  &__movie-title {
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  &__movie-genres {
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  &__movie-genre {
-    padding: 0 2px;
+  @media screen and (max-width: 575px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.movie {
+  position: relative;
+  padding: 15px;
+  border-radius: 2px;
+  cursor: pointer;
+  // transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  // transform-origin: 50% 70%;
+
+  // &:hover {
+  //   transform: scale(1.1);
+  // }
+
+  &__poster {
+    padding-bottom: 140%;
+    border-radius: 3px;
+    background-size: cover;
+    background-color: rgba($background-color-light, 0.8);
+  }
+
+  &__footer {
+    display: flex;
+    padding: 5px 0;
+  }
+
+  &__title {
+    flex: auto;
     color: $text-color-base;
-    font-size: $font-size-sm;
-    border-radius: 4px;
-    border: 1px solid $border-color;
-    background-color: $background-color-light;
-
-    & + & {
-      margin-left: 5px;
-    }
   }
 
-  &__movie-rate {
-    text-align: right;
+  &__rating {
+    margin-left: 5px;
+    flex-shrink: 0;
+    color: #ff410f;
   }
 }

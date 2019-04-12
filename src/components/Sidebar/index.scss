@@ -2,13 +2,16 @@
   overflow: auto;
   display: flex;
   padding: 25px 0;
+  width: $sidebar-width;
   height: 100%;
 
   flex-direction: column;
 
-  background-color: $sidebar-background-color;
+  &__header {
+    flex-shrink: 0;
+    padding-left: 25px;
+  }
 
-  &__header,
   &__footer {
     flex-shrink: 0;
     padding: 0 35px;
@@ -66,7 +69,7 @@
 }
 
 .search-bar {
-  $size: 32px;
+  $size: 30px;
 
   position: relative;
   overflow: hidden;
@@ -89,7 +92,7 @@
 
     &:focus {
       padding: 3px ($size + 6px) 3px 1em;
-      width: 185px;
+      width: $sidebar-width - 25px;
       opacity: 1;
 
       &::placeholder {

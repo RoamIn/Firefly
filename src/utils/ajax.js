@@ -88,7 +88,7 @@ export function ajax(apiName, data = {}) {
     let { url, method } = API[apiName]
 
     if (typeof api.suffix !== 'undefined' && api.suffix !== '') {
-        url += data[api.suffix]
+        url = url.replace(`:${api.suffix}`, data[api.suffix])
     }
 
     return _ajaxConfig({

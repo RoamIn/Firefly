@@ -1,0 +1,36 @@
+.c-drawer {
+  position: fixed;
+  width: 345px;
+  right: -345px;
+  height: 100%;
+  border-left: 1px solid #202020;
+  box-shadow: 0 0 30px #555;
+  transition: right 0.2s;
+  background: radial-gradient(rgba(#202020, 0.2), rgba(#202020, 0.5));
+
+  &.is-visible &__close-trigger {
+    display: block;
+  }
+
+  &__close-trigger {
+    $size: 32px;
+
+    display: none;
+    position: absolute;
+    left: -$size;
+    width: $size;
+    height: $size;
+    line-height: $size;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #202020;
+    border-top: none;
+    background-color: rgba(#202020, 0.5);
+  }
+
+  &__body {
+    overflow: hidden;
+    height: 100%;
+  }
+}

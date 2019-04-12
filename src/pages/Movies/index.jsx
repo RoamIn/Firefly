@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 
-import MovieStage from './components/MovieStage'
 import Tabs from '@/components/tabs'
+import Drawer from '@/components/drawer'
+
+import MovieStage from './components/MovieStage'
+import MovieDetail from './components/MovieDetail'
+
 
 import './index.scss'
 
@@ -35,21 +39,63 @@ class MoviesPage extends Component {
         ],
         params: {
             api: 'in_theaters'
+        },
+        movieId: 0,
+        drawer: {
+            width: '345px',
+            visible: false
         }
+    }
+
+    viewMovie(movieId) {
+        this.setState({
+            movieId
+        })
+        this.showDrawer()
+    }
+
+    showDrawer() {
+        this.setState({
+            drawer: {
+                ...this.state.drawer,
+                visible: true
+            }
+        })
+    }
+
+    hideDrawer() {
+        this.setState({
+            drawer: {
+                ...this.state.drawer,
+                visible: false
+            }
+        })
     }
 
     render() {
         return (
             <div className="page-movies">
-                <Tabs defaultActiveKey="in_theaters">
-                    {
-                        this.state.movieTypeList.map(type =>
-                            <div title={type.name} key={type.api}>
-                                <MovieStage apiName={type.api} />
-                            </div>
-                        )
-                    }
-                </Tabs>
+                <div className="page-movies__body">
+                    <Tabs defaultActiveKey="in_theaters">
+                        {
+                            this.state.movieTypeList.map(type =>
+                                <div title={type.name} key={type.api}>
+                                    <MovieStage apiName={type.api} onClick={(movieId) => this.viewMovie(movieId)} />
+                                </div>
+                            )
+                        }
+                    </Tabs>
+                </div>
+
+                <div className="page-movies__drawer" style={{
+                    width: this.state.drawer.visible ? this.state.drawer.width : 0
+                }}>
+                    <Drawer width={this.state.drawer.width}
+                        visible={this.state.drawer.visible}
+                        onClose={() => { this.hideDrawer() }}>
+                        <MovieDetail id={this.state.movieId} />
+                    </Drawer>
+                </div>
             </div>
         )
     }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+
 import MovieList from '../MovieList'
 
 import './index.scss'
 
 import ajax from '@/utils/ajax'
 
-class MovieStagePage extends Component {
+class MovieStage extends Component {
     constructor(props) {
         super(props)
 
@@ -33,11 +34,11 @@ class MovieStagePage extends Component {
         return (
             <section className="movie-stage">
                 <div className="movie-stage__body">
-                    <MovieList list={this.state.list} />
+                    <MovieList list={this.state.list} onClick={this.props.onClick} />
                 </div>
             </section>
         )
     }
 }
 
-export default MovieStagePage
+export default MovieStage

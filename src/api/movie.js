@@ -39,5 +39,12 @@ export default {
         method: 'GET',
         desc: '北美票房榜',
         url: '/v2/movie/us_box'
+    },
+
+    get_movie_detail: {
+        method: 'GET',
+        desc: '获取电影详情',
+        suffix: 'id',
+        url: '/v2/movie/subject/:id'
     }
 }
