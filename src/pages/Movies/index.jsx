@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 
 import Tabs from '@/components/tabs'
 import Drawer from '@/components/drawer'
+import Icon from '@/components/base/icon'
 
 import MovieStage from './components/MovieStage'
 import MovieDetail from './components/MovieDetail'
 
+import ajax from '@/utils/ajax'
 
 import './index.scss'
 
@@ -72,9 +74,29 @@ class MoviesPage extends Component {
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+
+        ajax('search', { q: '复仇者' }).then((res) => {
+            console.log(res)
+        }).catch(error => {
+            console.log(error.message)
+        }).finally(() => {
+            // this.updateLoading(false)
+        })
+    }
+
     render() {
         return (
             <div className="page-movies">
+                <form className="search-bar" onSubmit={this.handleSubmit}>
+                    <input className="search-bar__input" type="text" placeholder="Search..." />
+
+                    <div className="search-bar__button">
+                        <Icon type="search" />
+                    </div>
+                </form>
+
                 <div className="page-movies__body">
                     <Tabs defaultActiveKey="in_theaters">
                         {

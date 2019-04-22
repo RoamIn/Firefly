@@ -10,7 +10,7 @@ class Icon extends Component {
             this.props.className
         )
         return (
-            <i className={classString} style={this.props.style}>
+            <i className={classString} style={this.props.style} onClick={this.props.onClick}>
                 <svg aria-hidden="true">
                     <use xlinkHref={`#icon-${this.props.type}`}></use>
                 </svg >

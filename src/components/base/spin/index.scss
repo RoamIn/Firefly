@@ -1,0 +1,109 @@
+.c-spin {
+  display: none;
+  position: relative;
+  opacity: 0;
+  text-align: center;
+  vertical-align: middle;
+  transition: transform 0.3s ease-in-out;
+
+  &.spinning {
+    display: block;
+    opacity: 1;
+  }
+
+  &__box {
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  &__animate {
+    $size: 36px;
+
+    position: relative;
+    display: inline-block;
+    width: $size;
+    height: $size;
+
+    .primary {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include circle($size);
+      opacity: 0.6;
+      will-change: transform;
+      animation-duration: 1.6s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-fill-mode: forwards;
+      filter: drop-shadow(0 0 2px rgba(#fff, 0.8));
+      &-red {
+        background-color: #f00;
+        animation-name: goTop;
+      }
+      &-green {
+        background-color: #0f0;
+        animation-name: goRight;
+      }
+      &-blue {
+        background-color: #00f;
+        animation-name: goLeft;
+      }
+      $translateOffset: 50%;
+      @keyframes goTop {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(0, -$translateOffset);
+        }
+        50% {
+          transform: translate(0, 0);
+        }
+        75% {
+          transform: translate(0, $translateOffset);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      @keyframes goLeft {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-$translateOffset, $translateOffset);
+        }
+        50% {
+          transform: translate(0, 0);
+        }
+        75% {
+          transform: translate($translateOffset, -$translateOffset);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      @keyframes goRight {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate($translateOffset, $translateOffset);
+        }
+        50% {
+          transform: translate(0, 0);
+        }
+        75% {
+          transform: translate(-$translateOffset, -$translateOffset);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+    }
+  }
+
+  &__text {
+    padding-top: 5px;
+  }
+}

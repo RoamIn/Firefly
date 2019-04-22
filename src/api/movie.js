@@ -41,6 +41,12 @@ export default {
         url: '/v2/movie/us_box'
     },
 
+    search: {
+        method: 'GET',
+        desc: '',
+        url: '/v2/movie/search'
+    },
+
     get_movie_detail: {
         method: 'GET',
         desc: '获取电影详情',

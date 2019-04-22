@@ -32,7 +32,10 @@
 
   &__body {
     flex: auto;
-    overflow: auto;
-    @include hide-scrollbar;
+    height: 100%;
+  }
+
+  &__pane {
+    height: 100%;
   }
 }

@@ -1,40 +1,91 @@
 import React, { Component } from 'react'
 
+import Spin from '@/components/base/spin'
+
+import ajax from '@/utils/ajax'
+
+
 import MovieList from '../MovieList'
 
 import './index.scss'
 
-import ajax from '@/utils/ajax'
+const WINDOW_INNER_HEIGHT = window.innerHeight
 
 class MovieStage extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            list: []
+            list: [],
+            isLoading: false,
+            noMore: false,
+            hasError: false,
+            message: '',
+            params: {
+                start: 0,
+                count: 20
+            }
         }
     }
 
-    componentDidMount() {
+    updateLoading(bool) {
+        this.setState({
+            isLoading: bool
+        })
+    }
+
+    onScroll(e) {
+        if (this.state.isLoading || this.state.noMore || this.state.hasError) {
+            return
+        }
+
+        const { scrollHeight, scrollTop } = e.target
+        const distanceToBottom = scrollHeight - WINDOW_INNER_HEIGHT - scrollTop
+
+        if (distanceToBottom < 20) {
+            console.log('next')
+            this.search(this.state.params.start + this.state.params.count)
+        }
+    }
+
+    search(start = 0) {
+        this.setState({
+            params: { ...this.state.params, start }
+        })
+
+        this.updateLoading(true)
+
         ajax(this.props.apiName, {
-            start: 0,
-            count: 20
+            start,
+            count: this.state.params.count
         }).then((res) => {
             const { subjects } = res
 
             this.setState({
-                list: subjects
+                list: this.state.list.concat(subjects),
+                noMore: subjects.length === 0
             })
         }).catch(error => {
             console.log(error.message)
+        }).finally(() => {
+            this.updateLoading(false)
         })
     }
 
+    componentDidMount() {
+        this.updateLoading(true)
+
+        this.search()
+    }
+
     render() {
+        const { isLoading } = this.state
+
         return (
-            <section className="movie-stage">
+            <section className="movie-stage" onScroll={(e) => this.onScroll(e)}>
                 <div className="movie-stage__body">
                     <MovieList list={this.state.list} onClick={this.props.onClick} />
+                    {isLoading && <Spin loading={isLoading} />}
                 </div>
             </section>
         )

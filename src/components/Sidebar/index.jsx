@@ -15,14 +15,9 @@ class Sidebar extends Component {
                 exact: true
             },
             {
-                path: '/live',
-                name: 'Live',
-                icon: 'live'
-            },
-            {
-                path: '/*',
-                name: 'NotFound',
-                icon: '404'
+                path: '/magnet',
+                name: 'Magnet',
+                icon: 'magnet'
             }
         ]
 
@@ -32,13 +27,7 @@ class Sidebar extends Component {
         return (
             <div className="c-sidebar">
                 <div className="c-sidebar__header">
-                    <div className="search-bar">
-                        <input className="search-bar__input" type="text" placeholder="Search..." />
 
-                        <div className="search-bar__button">
-                            <Icon type="search" />
-                        </div>
-                    </div>
                 </div>
                 <div className="c-sidebar__body">
                     <ul className="c-sidebar__navigator-list">

@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+
+import Spin from '@/components/base/spin'
 import Rate from '@/components/rate'
 import Celebrities from '@/components/celebrities'
 
@@ -53,10 +56,13 @@ class MovieDetail extends Component {
     }
 
     render() {
-        const data = this.state.data
+        const { isLoading, data } = this.state
+        let DOM = null
 
-        return (
-            <div className="movie-detail">
+        if (isLoading) {
+            DOM = <Spin loading={isLoading} />
+        } else {
+            DOM = <div className="movie-detail">
                 <div className="movie-detail__header">{data.title}</div>
 
                 <div className="movie-detail__body">
@@ -116,11 +122,19 @@ class MovieDetail extends Component {
                 </div>
 
                 <div className="movie-detail__footer">
-                    <button className="search-button">Search Magnet</button>
+                    <Link className="search-button" to={{
+                        pathname: '/magnet',
+                        search: `?title=${this.state.data.title}`
+                    }} target="_blank">Search Magnet</Link>
                 </div>
             </div>
+
+        }
+
+        return (
+            <div className="movie-detail-wrapper">{DOM}</div>
         )
     }
 }
 
-export default MovieDetail
+export default withRouter(MovieDetail)

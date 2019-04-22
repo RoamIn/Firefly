@@ -2,18 +2,11 @@ import { lazy } from 'react'
 
 export default [
     {
-        path: '/movie/:id',
-        name: 'Movie',
-        icon: 'movie',
+        path: '/magnet',
+        name: 'Magnet',
+        icon: 'magnet',
         exact: true,
-        component: lazy(() => import('@/pages/Movie'))
-    },
-    {
-        path: '/live',
-        name: 'Live',
-        icon: 'live',
-        exact: true,
-        component: lazy(() => import('@/pages/Live'))
+        component: lazy(() => import('@/pages/Magnet'))
     },
     {
         path: '/',
