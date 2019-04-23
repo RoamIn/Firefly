@@ -12,7 +12,29 @@ class Tabs extends Component {
         super()
 
         this.state = {
-            activeKey: props.defaultActiveKey || this.default.defaultActiveKey
+            activeKey: props.defaultActiveKey.activeKey || props.defaultActiveKey || this.default.defaultActiveKey
+        }
+    }
+
+    handleChange = ({ key: activeKey }) => {
+        const onChange = this.props.onChange
+
+        this.setState({
+            activeKey
+        })
+
+        if (onChange) {
+            onChange(activeKey)
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const activeKey = this.props.activeKey
+
+        if (prevProps.activeKey !== activeKey && activeKey !== '') {
+            this.setState({
+                activeKey
+            })
         }
     }
 
@@ -22,9 +44,7 @@ class Tabs extends Component {
 
             return (
                 <span className={classnames('c-tabs__title', isActive)} onClick={() => {
-                    this.setState({
-                        activeKey: element.key
-                    })
+                    this.handleChange(element)
                 }}>{element.props.title}</span>
             )
         })

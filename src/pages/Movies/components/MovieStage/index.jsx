@@ -22,6 +22,7 @@ class MovieStage extends Component {
             hasError: false,
             message: '',
             params: {
+                ...props.params,
                 start: 0,
                 count: 20
             }
@@ -34,12 +35,12 @@ class MovieStage extends Component {
         })
     }
 
-    onScroll(e) {
+    handleScroll = (event) => {
         if (this.state.isLoading || this.state.noMore || this.state.hasError) {
             return
         }
 
-        const { scrollHeight, scrollTop } = e.target
+        const { scrollHeight, scrollTop } = event.target
         const distanceToBottom = scrollHeight - WINDOW_INNER_HEIGHT - scrollTop
 
         if (distanceToBottom < 20) {
@@ -56,6 +57,7 @@ class MovieStage extends Component {
         this.updateLoading(true)
 
         ajax(this.props.apiName, {
+            ...this.state.params,
             start,
             count: this.state.params.count
         }).then((res) => {
@@ -72,9 +74,13 @@ class MovieStage extends Component {
         })
     }
 
-    componentDidMount() {
-        this.updateLoading(true)
+    componentDidUpdate(prevProps) {
+        if (JSON.stringify(prevProps.params) !== JSON.stringify(this.props.params)) {
+            this.search()
+        }
+    }
 
+    componentDidMount() {
         this.search()
     }
 
@@ -82,7 +88,7 @@ class MovieStage extends Component {
         const { isLoading } = this.state
 
         return (
-            <section className="movie-stage" onScroll={(e) => this.onScroll(e)}>
+            <section className="movie-stage" onScroll={this.handleScroll}>
                 <div className="movie-stage__body">
                     <MovieList list={this.state.list} onClick={this.props.onClick} />
                     {isLoading && <Spin loading={isLoading} />}

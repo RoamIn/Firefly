@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import queryString from 'query-string'
 
-
 import Icon from '@/components/base/icon'
 
 import './index.scss'

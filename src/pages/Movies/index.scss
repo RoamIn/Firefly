@@ -18,6 +18,7 @@
   }
 
   .search-bar {
+    $width: 280px;
     $size: 30px;
 
     display: inline-flex;
@@ -41,9 +42,10 @@
       background-color: transparent;
       opacity: 0;
 
+      &.active,
       &:focus {
         padding: 3px ($size + 6px) 3px 1em;
-        width: $sidebar-width - 25px - 15px;
+        width: $width - $size - 15px;
         opacity: 1;
 
         &::placeholder {

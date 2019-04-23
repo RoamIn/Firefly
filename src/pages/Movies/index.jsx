@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
+import classnames from 'classnames'
 
-import Tabs from '@/components/tabs'
-import Drawer from '@/components/drawer'
 import Icon from '@/components/base/icon'
+import Drawer from '@/components/drawer'
+import Tabs from '@/components/tabs'
 
 import MovieStage from './components/MovieStage'
 import MovieDetail from './components/MovieDetail'
-
-import ajax from '@/utils/ajax'
 
 import './index.scss'
 
@@ -39,17 +38,19 @@ class MoviesPage extends Component {
             //     name: '北美票房榜'
             // },
         ],
-        params: {
-            api: 'in_theaters'
-        },
         movieId: 0,
+        tabsActiveKey: '',
+        searchBarInputValue: '',
+        params: {
+            q: ''
+        },
         drawer: {
             width: '345px',
             visible: false
         }
     }
 
-    viewMovie(movieId) {
+    handleViewMovie = (movieId) => {
         this.setState({
             movieId
         })
@@ -65,7 +66,7 @@ class MoviesPage extends Component {
         })
     }
 
-    hideDrawer() {
+    handleDrawerClose = () => {
         this.setState({
             drawer: {
                 ...this.state.drawer,
@@ -74,38 +75,72 @@ class MoviesPage extends Component {
         })
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault()
+    handleSearchBarInputChange = (event) => {
+        const searchBarInputValue = event.target.value.trim()
 
-        ajax('search', { q: '复仇者' }).then((res) => {
-            console.log(res)
-        }).catch(error => {
-            console.log(error.message)
-        }).finally(() => {
-            // this.updateLoading(false)
+        this.setState({
+            searchBarInputValue
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+
+        const q = this.state.searchBarInputValue
+
+        if (q === '') return
+
+        this.setState({
+            tabsActiveKey: 'search',
+            params: {
+                q
+            }
+        })
+    }
+
+    handleTabsChange = (activeKey) => {
+        if (activeKey !== this.state.tabsActiveKey) {
+            this.setState({
+                tabsActiveKey: '',
+                searchBarInputValue: ''
+            })
+        }
+    }
+
     render() {
+        const isSearch = this.state.searchBarInputValue !== ''
+        const searchBarInputClassNames = classnames({
+            'search-bar__input': true,
+            'active': isSearch
+        })
+
         return (
             <div className="page-movies">
-                <form className="search-bar" onSubmit={this.handleSubmit}>
-                    <input className="search-bar__input" type="text" placeholder="Search..." />
-
-                    <div className="search-bar__button">
-                        <Icon type="search" />
-                    </div>
-                </form>
-
                 <div className="page-movies__body">
-                    <Tabs defaultActiveKey="in_theaters">
+                    <form className="search-bar" onSubmit={this.handleSubmit}>
+                        <input className={searchBarInputClassNames}
+                            autoComplete="off"
+                            type="text"
+                            placeholder="Search..."
+                            value={this.state.searchBarInputValue}
+                            onChange={this.handleSearchBarInputChange} />
+
+                        <div className="search-bar__button">
+                            <Icon type="search" />
+                        </div>
+                    </form>
+
+                    <Tabs defaultActiveKey="in_theaters" activeKey={this.state.tabsActiveKey} onChange={this.handleTabsChange}>
                         {
                             this.state.movieTypeList.map(type =>
                                 <div title={type.name} key={type.api}>
-                                    <MovieStage apiName={type.api} onClick={(movieId) => this.viewMovie(movieId)} />
+                                    <MovieStage apiName={type.api} onClick={this.handleViewMovie} />
                                 </div>
                             )
                         }
+                        <div title="" key="search">
+                            < MovieStage apiName="search" params={this.state.params} onClick={this.handleViewMovie} />
+                        </div>
                     </Tabs>
                 </div>
 
@@ -114,7 +149,7 @@ class MoviesPage extends Component {
                 }}>
                     <Drawer width={this.state.drawer.width}
                         visible={this.state.drawer.visible}
-                        onClose={() => { this.hideDrawer() }}>
+                        onClose={this.handleDrawerClose}>
                         <MovieDetail id={this.state.movieId} />
                     </Drawer>
                 </div>
