@@ -122,7 +122,7 @@ class MovieDetail extends Component {
                 </div>
 
                 <div className="movie-detail__footer">
-                    <Link className="search-button" to={{
+                    <Link className="btn search-magnet-button" to={{
                         pathname: '/magnet',
                         search: `?title=${this.state.data.title}`
                     }} target="_blank">Search Magnet</Link>
