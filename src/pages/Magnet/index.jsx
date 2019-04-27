@@ -106,7 +106,7 @@ class MagnetPage extends Component {
 
                 <MagnetList list={this.state.list} />
                 {isLoading && <Spin loading={isLoading} />}
-                {this.state.hasError && <div>{this.state.message}</div>}
+                {this.state.hasError && <div className="error-message">{this.state.message}</div>}
                 {!isLoading && this.state.noMore && <div className="no-result">{this.state.list.length === 0 ? `</> There's nothing here ...` : '</End>'}</div>}
             </main>
         )

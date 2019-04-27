@@ -77,7 +77,7 @@ _ajaxConfig.interceptors.response.use((response) => {
 
             break
         default:
-            alert(`网络错误\n${error.response.status}\n${error.response.config.url}`)
+            console.error(`网络错误\n${error.response.status}\n${error.response.config.url}`)
     }
 
     return Promise.reject(error)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import copy from 'copy-to-clipboard'
 import moment from 'moment'
 
 import Icon from '@/components/base/icon'
@@ -6,8 +7,8 @@ import Icon from '@/components/base/icon'
 import './index.scss'
 
 class Search extends Component {
-    copy() {
-
+    copyMagnet = ({ magnet }) => {
+        copy(magnet)
     }
 
     render() {
@@ -30,7 +31,7 @@ class Search extends Component {
                                 </div>
                             </div>
                             <div className="magnet__attachment">
-                                <button className="copy-btn" onClick={() => this.copy(item.magnet)}>复制磁力链接</button>
+                                <button className="copy-btn" onClick={() => { this.copyMagnet(item) }}>复制磁力链接</button>
                             </div>
                         </div>
                     </li >)
