@@ -23,7 +23,7 @@ class Celebrity extends Component {
                 {this.props.list.map((celebrity, index) =>
                     <div className="c-celebrity" key={celebrity.id}>
                         <div className="c-celebrity__avatar" style={{
-                            backgroundImage: `url(${celebrity.avatars.small})`
+                            backgroundImage: `url(https://images.weserv.nl/?url=${celebrity.avatars.small})`
                         }} alt={celebrity.name}></div>
                         <div className="c-celebrity__name">{celebrity.name}</div>
                     </div>

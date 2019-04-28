@@ -67,7 +67,7 @@ class MovieDetail extends Component {
 
                 <div className="movie-detail__body">
                     <div className="movie-detail__poster" alt="poster" style={{
-                        backgroundImage: `url(${data.images.small})`
+                        backgroundImage: `url(https://images.weserv.nl/?url=${data.images.small})`
                     }} />
 
                     <div className="card">
