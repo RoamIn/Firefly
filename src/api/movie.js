@@ -1,56 +1,37 @@
 export default {
-    // Request: {
-    //     start: 0
-    //     count: 20
-    // }
+    search_tags: {
+        method: 'GET',
+        desc: '标签',
+        url: '/j/search_tags'
+        // Request: {
+        // type: movie
+        // source: index
+        // }
 
-    // Response: {
-    //     "start": 0,
-    //     "count": 20,
-    //     "total": 39,
-    //     "subjects": [<Subject>, ...],
-    // }
-    in_theaters: {
+        // Response: {
+        //     {"tags":["热门","最新","豆瓣高分","冷门佳片","华语","欧美","韩国","日本"]}
+        // }
+    },
+    search_subjects: {
         method: 'GET',
         desc: '正在热映',
-        url: '/v2/movie/in_theaters'
-    },
-    coming_soon: {
-        method: 'GET',
-        desc: '即将上映',
-        url: '/v2/movie/coming_soon'
-    },
-    weekly: {
-        method: 'GET',
-        desc: '口碑榜[需要权限]',
-        url: '/v2/movie/weekly'
-    },
-    new_movies: {
-        method: 'GET',
-        desc: '新片榜[需要权限]',
-        url: '/v2/movie/new_movies'
-    },
-    top250: {
-        method: 'GET',
-        desc: 'Top250',
-        url: '/v2/movie/top250'
-    },
-    us_box: {
-        method: 'GET',
-        desc: '北美票房榜',
-        url: '/v2/movie/us_box'
-    },
+        url: '/j/search_subjects',
+        // Request: {
+        // type: movie
+        // tag: 最新
+        // page_limit: 50
+        // page_start: 0            
+        // }
 
-    search: {
-        method: 'GET',
-        desc: '',
-        url: '/v2/movie/search'
+        // Response: {
+        //     "subjects": [<Subject>, ...],
+        // }
     },
-
+    // https://m.douban.com/rexxar/api/v2/movie/30295905?ck=&for_mobile=1
     get_movie_detail: {
-        method: 'GET',
-        desc: '获取电影详情',
-        suffix: 'id',
-        url: '/v2/movie/subject/:id'
+        method: 'POST',
+        desc: '正在热映',
+        url: '/rexxar/api/v2/movie/:id',
+        suffix: 'id'
     }
 }

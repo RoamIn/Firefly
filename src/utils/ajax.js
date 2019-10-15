@@ -3,52 +3,52 @@ import axios from 'axios'
 import API from '@/api'
 
 // 基础配置
-const _ajaxConfig = axios.create({
+const _ajaxConfig = axios.create( {
     baseURL: API.baseURL,
     headers: {
         'Content-Type': 'json'
     }
-})
+} )
 
 /**
  * 混入全局参数 token
  * @param params
  * @returns {{} & {} & {token: *}}
  */
-function mixinGlobalParams(params = {}) {
-    const token = (Date.now()).toString(16)
+function mixinGlobalParams ( params = {} ) {
+    const token = ( Date.now() ).toString( 16 )
 
-    return Object.assign({}, params, {
+    return Object.assign( {}, params, {
         token
-    })
+    } )
 }
 
 // Add a request interceptor
-_ajaxConfig.interceptors.request.use((config) => {
+_ajaxConfig.interceptors.request.use( ( config ) => {
     // 混入公共参数
-    switch (config.method) {
+    switch ( config.method ) {
         case 'put':
         case 'post':
         case 'patch':
             // 这些情况，请求参数放在 params
-            config.data = mixinGlobalParams(config.data)
+            config.data = mixinGlobalParams( config.data )
 
             break
         default:
             // 默认，请求参数放在 params
-            config.params = mixinGlobalParams(config.data)
+            config.params = mixinGlobalParams( config.data )
     }
 
     return config
-}, (error) => {
+}, ( error ) => {
     // Do something with request error
-    alert(`网络错误\n${error.message}`)
+    alert( `网络错误\n${error.message}` )
 
-    return Promise.reject(error)
-})
+    return Promise.reject( error )
+} )
 
 // Add a response interceptor
-_ajaxConfig.interceptors.response.use((response) => {
+_ajaxConfig.interceptors.response.use( ( response ) => {
     // Do something with response data
     const res = response.data
 
@@ -63,39 +63,39 @@ _ajaxConfig.interceptors.response.use((response) => {
     // }
 
     return res
-}, (error) => {
+}, ( error ) => {
     // Do something with response error
-    if (typeof error.response === 'undefined') {
-        alert(`网络错误\n${error.message}\n${error.config.url}`)
+    if ( typeof error.response === 'undefined' ) {
+        alert( `网络错误\n${error.message}\n${error.config.url}` )
 
-        return Promise.reject(error)
+        return Promise.reject( error )
     }
 
-    switch (error.response.status) {
+    switch ( error.response.status ) {
         case 403:
-            alert(403)
+            alert( 403 )
 
             break
         default:
-            console.error(`网络错误\n${error.response.status}\n${error.response.config.url}`)
+            alert( `网络错误\n${error.response.status}\n${error.response.config.url}` )
     }
 
-    return Promise.reject(error)
-})
+    return Promise.reject( error )
+} )
 
-export function ajax(apiName, data = {}) {
+export function ajax ( apiName, data = {} ) {
     const api = API[apiName]
     let { url, method } = API[apiName]
 
-    if (typeof api.suffix !== 'undefined' && api.suffix !== '') {
-        url = url.replace(`:${api.suffix}`, data[api.suffix])
+    if ( typeof api.suffix !== 'undefined' && api.suffix !== '' ) {
+        url = url.replace( `:${api.suffix}`, data[api.suffix] )
     }
 
-    return _ajaxConfig({
+    return _ajaxConfig( {
         url,
         method,
         data
-    })
+    } )
 }
 
 export default ajax
