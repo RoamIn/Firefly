@@ -36,10 +36,18 @@
   // }
 
   &__poster {
+    position: relative;
     padding-bottom: 140%;
-    border-radius: 3px;
-    background-size: cover;
-    background-color: rgba($background-color-light, 0.8);
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 3px;
+      transform: translate(-50%, -50%);
+    }
   }
 
   &__footer {

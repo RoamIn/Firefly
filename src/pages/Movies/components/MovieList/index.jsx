@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Picture from '@/components/picture';
+
 import './index.scss';
 
 class MovieList extends Component {
@@ -12,12 +14,9 @@ class MovieList extends Component {
             key={item.id}
             onClick={() => this.props.onClick(item.id)}
           >
-            <div
-              className="movie__poster"
-              style={{
-                backgroundImage: `url(${item.cover})`
-              }}
-            />
+            <div className="movie__poster">
+              <Picture src={item.cover} alt={item.title} loading="lazy" />
+            </div>
             <div className="movie__footer">
               <div className="movie__title">
                 {item.title}

@@ -29,8 +29,8 @@ export default {
     },
     // https://m.douban.com/rexxar/api/v2/movie/30295905?ck=&for_mobile=1
     get_movie_detail: {
-        method: 'POST',
-        desc: '正在热映',
+        method: 'GET',
+        desc: '获取电影详情',
         url: '/rexxar/api/v2/movie/:id',
         suffix: 'id'
     }

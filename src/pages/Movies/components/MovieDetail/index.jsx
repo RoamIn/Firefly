@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Spin from '@/components/base/spin';
 import Rate from '@/components/rate';
 import Celebrities from '@/components/celebrities';
+import Picture from '@/components/picture';
 
 import ajax from '@/utils/ajax';
 
@@ -24,7 +25,7 @@ class MovieDetail extends Component {
         aka: [],
         rating: {}
       },
-      isLoading: false
+      isLoading: true
     };
   }
 
@@ -45,6 +46,7 @@ class MovieDetail extends Component {
       for_mobile: 1
     })
       .then(res => {
+        console.log(res);
         this.setState({
           data: res
         });
@@ -76,20 +78,16 @@ class MovieDetail extends Component {
           </div>
 
           <div className="movie-detail__body">
-            <div
-              className="movie-detail__poster"
-              alt="poster"
-              style={{
-                backgroundImage: `url(${data.images.small})`
-              }}
-            />
+            <div className="movie-detail__poster">
+              <Picture src={data.pic.normal} alt="poster" />
+            </div>
 
             <div className="card">
               <div className="card__body">
                 <div className="detail-info-item">
                   <span className="detail-info-item__label">豆瓣评分: </span>
                   <span className="detail-info-item__text">
-                    <Rate rate={data.rating.average} />
+                    <Rate rate={data.rating.value} />
                   </span>
                 </div>
                 <div className="detail-info-item">
@@ -129,7 +127,7 @@ class MovieDetail extends Component {
             <div className="card">
               <h4 className="card__title">主演</h4>
               <div className="card__body">
-                <Celebrities className="casts" list={data.casts} />
+                <Celebrities className="casts" list={data.actors} />
               </div>
             </div>
 
@@ -137,7 +135,7 @@ class MovieDetail extends Component {
               <h4 className="card__title">剧情简介</h4>
               <div className="card__body">
                 <p className="summary">
-                  {data.summary}
+                  {data.intro}
                 </p>
               </div>
             </div>

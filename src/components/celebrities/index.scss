@@ -1,9 +1,13 @@
 .c-celebrities {
   display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
 }
 
 .c-celebrity {
+  flex-shrink: 0;
   width: 100px;
+  cursor: pointer;
   cursor: pointer;
 
   & + & {
@@ -11,9 +15,20 @@
   }
 
   &__avatar {
+    position: relative;
     padding-bottom: 143%;
     background-size: cover;
     border-radius: 4px;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 3px;
+      transform: translate(-50%, -50%);
+    }
   }
 
   &__name {
