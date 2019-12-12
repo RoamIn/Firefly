@@ -6,7 +6,7 @@ class Picture extends Component {
   render() {
     const { src = '', alt, ...etcProps } = this.props;
 
-    return <img src={'/picture' + src} alt={alt} {...etcProps} />;
+    return <img src={'/picture/' + src} alt={alt} {...etcProps} />;
   }
 }
 
