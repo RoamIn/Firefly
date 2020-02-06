@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+$prefixCls: "notification";
+
+.#{$prefixCls}-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+
+  transform: translate3D(-50%, -50%, 0);
+  z-index: 110;
+}
