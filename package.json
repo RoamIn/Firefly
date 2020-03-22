@@ -71,7 +71,7 @@
     "dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "deploy": "node scripts/build.js && mv -f build/index.html ../../backend/app/view && rm -rf ../../backend/app/public && mv build/ ../../backend/app/public"
+    "deploy": "node scripts/build.js && mv -f build/index.html ../Matrix/app/view && rm -rf ../Matrix/app/public && mv build/ ../Matrix/app/public"
   },
   "eslintConfig": {
     "extends": "react-app"
