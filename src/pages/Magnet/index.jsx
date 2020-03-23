@@ -34,7 +34,7 @@ class MagnetPage extends Component {
     });
   }
 
-  getMagnetByTitle() {
+  searchMagnet() {
     const data = { ...this.state.searchParams };
 
     this.updateLoading(true);
@@ -44,11 +44,11 @@ class MagnetPage extends Component {
     });
 
     setTimeout(() => {
-      ajax('getMagnetByTitle', data)
+      ajax('searchMagnet', data)
         .then(({ data }) => {
           this.setState({
-            list: this.state.list.concat(data.list),
-            noMore: data.list.length === 0
+            list: this.state.list.concat(data.rows),
+            noMore: data.rows.length === 0
           });
         })
         .catch(error => {
@@ -71,14 +71,14 @@ class MagnetPage extends Component {
     });
 
     this.setSearchParams({ title, page });
-    this.getMagnetByTitle();
+    this.searchMagnet();
   }
 
   nextPage() {
     const page = this.state.searchParams.page + 1;
 
     this.setSearchParams({ page });
-    this.getMagnetByTitle();
+    this.searchMagnet();
   }
 
   updateLoading(bool) {
@@ -113,17 +113,16 @@ class MagnetPage extends Component {
 
         <MagnetList list={this.state.list} />
         {isLoading && <Spin loading={isLoading} />}
-        {this.state.hasError &&
-          <div className="error">
-            {this.state.message}
-          </div>}
-        {!isLoading &&
-          this.state.noMore &&
+        {this.state.hasError && (
+          <div className="error">{this.state.message}</div>
+        )}
+        {!isLoading && this.state.noMore && (
           <div className="no-result">
             {this.state.list.length === 0
               ? `</> There's nothing here ...`
               : '</End>'}
-          </div>}
+          </div>
+        )}
       </main>
     );
   }

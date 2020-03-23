@@ -1,7 +1,7 @@
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = function (app) {
-    app.use(proxy('/rexxar', {
+    app.use('/rexxar', createProxyMiddleware({
         target: 'https://m.douban.com',
         headers: {
             referer: 'https://m.douban.com/movie'
@@ -9,12 +9,12 @@ module.exports = function (app) {
         changeOrigin: true
     }))
 
-    app.use(proxy('/j', {
+    app.use('/j', createProxyMiddleware({
         target: 'https://movie.douban.com',
         changeOrigin: true
     }))
 
-    app.use(proxy('/picture', {
+    app.use('/picture', createProxyMiddleware({
         target: 'https://img3.doubanio.com',
         pathRewrite: {
             '^/picture': ''
@@ -25,8 +25,8 @@ module.exports = function (app) {
         changeOrigin: true
     }))
 
-    app.use(proxy('/api', {
-        target: 'http://localhost:8321',
+    app.use('/api', createProxyMiddleware({
+        target: 'http://liwei.site:8321',
         changeOrigin: true
     }))
 }

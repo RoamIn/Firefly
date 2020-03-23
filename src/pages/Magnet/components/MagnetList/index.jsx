@@ -29,7 +29,7 @@ class Search extends Component {
                   </time>
                   <span className="magnet__size">
                     <Icon className="icon-attachment" type="attachment" />
-                    {(item.length / 1073741824).toFixed(2)} G
+                    {(item.size / 1073741824).toFixed(2)} G
                   </span>
                 </div>
               </div>

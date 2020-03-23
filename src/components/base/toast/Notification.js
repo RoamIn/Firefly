@@ -40,7 +40,7 @@ class Notification extends React.Component {
         const { notices } = this.state;
         const result = [];
 
-        notices.map((notice) => {
+        notices.forEach((notice) => {
             // 每个Notice onClose的时候 删除掉notices中对应key的notice
             const closeCallback = () => {
                 _this.remove(notice.key);
