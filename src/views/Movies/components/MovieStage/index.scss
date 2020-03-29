@@ -1,0 +1,8 @@
+@import "~styles/variables";
+@import "~styles/mixins";
+
+.movie-stage {
+  overflow: auto;
+  height: 100%;
+  @include hide-scrollbar;
+}

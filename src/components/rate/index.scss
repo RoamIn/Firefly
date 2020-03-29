@@ -1,3 +1,8 @@
+@charset "UTF-8";
+
+@import "~styles/variables";
+@import "~styles/mixins";
+
 .c-rate {
   font-size: $font-size-lg;
   line-height: 1;

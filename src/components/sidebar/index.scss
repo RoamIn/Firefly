@@ -1,3 +1,8 @@
+@charset "UTF-8";
+
+@import "~styles/variables";
+@import "~styles/mixins";
+
 .c-sidebar {
   position: relative;
   overflow: auto;
@@ -16,7 +21,11 @@
     bottom: 0;
     width: 1px;
     // background: linear-gradient(rgba(#fff, 0.1), rgba(#fff, 0.8), rgba(#fff, 0.1));
-    background: linear-gradient(rgba(#000, 0.05), rgba(#000, 0.3), rgba(#000, 0.05));
+    background: linear-gradient(
+      rgba(#000, 0.05),
+      rgba(#000, 0.3),
+      rgba(#000, 0.05)
+    );
     // opacity: 0.6;
     // background: linear-gradient(#ff6b6a, #fffd5b, #5bfe63, #5afff9, #5a5cfe, #f95cfe, #ff5b61);
   }

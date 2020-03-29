@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Picture from '@/components/picture';
+import Picture from "components/picture";
 
-import './index.scss';
+import "./index.scss";
 
 class Celebrity extends Component {
   static defaultProps = {
-    list: []
+    list: [],
     // data: {
     //     alt: '',
     //     avatars: {
@@ -22,7 +22,7 @@ class Celebrity extends Component {
   render() {
     return (
       <div className="c-celebrities">
-        {this.props.list.map((celebrity, index) =>
+        {this.props.list.map((celebrity, index) => (
           <div className="c-celebrity" key={celebrity.id}>
             <div className="c-celebrity__avatar">
               <Picture
@@ -31,11 +31,9 @@ class Celebrity extends Component {
                 loading="lazy"
               />
             </div>
-            <div className="c-celebrity__name">
-              {celebrity.name}
-            </div>
+            <div className="c-celebrity__name">{celebrity.name}</div>
           </div>
-        )}
+        ))}
       </div>
     );
   }

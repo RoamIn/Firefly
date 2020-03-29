@@ -1,0 +1,74 @@
+@import "~styles/variables";
+@import "~styles/mixins";
+
+.page-movies {
+  display: flex;
+  height: 100%;
+
+  &__body {
+    flex: auto;
+    padding: 0 30px;
+  }
+
+  &__drawer {
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    border-left: 1px solid #202020;
+    box-shadow: 0 0 30px #555;
+    transition: all 0.2s;
+  }
+
+  .search-bar {
+    $width: 280px;
+    $size: 30px;
+
+    display: inline-flex;
+    overflow: hidden;
+    position: absolute;
+    top: 25px;
+    left: 45px;
+    border-radius: $size;
+    background-color: $background-color-dark;
+
+    &__input {
+      z-index: 1;
+      position: relative;
+      overflow: hidden;
+      width: $size;
+      height: $size;
+      font-size: $font-size-base;
+      color: $text-color-dark;
+      transition: all 0.3s;
+      border-radius: $size;
+      background-color: transparent;
+      opacity: 0;
+
+      &.active,
+      &:focus {
+        padding: 3px ($size + 6px) 3px 1em;
+        width: $width - $size - 15px;
+        opacity: 1;
+
+        &::placeholder {
+          color: $text-color-light;
+        }
+      }
+    }
+
+    &__button {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: $size;
+      height: $size;
+      line-height: $size;
+      border-radius: 50%;
+      text-align: center;
+      color: #fff;
+      background-color: $primary;
+      transform: translateY(-50%);
+    }
+  }
+}
